@@ -1,7 +1,7 @@
 name: Schedule
 on:
   schedule:                # 定期実行イベント
-    - cron: '*/1 * * * *' # 1分ごとに起動するcron式
+    - cron: '*/10 * * * *' # 1分ごとに起動するcron式
   workflow_dispatch:
 jobs:
   run:
