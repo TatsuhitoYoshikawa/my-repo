@@ -1,0 +1,25 @@
+name: Go
+
+# Renovate の自動更新 PR はこのジョブが通った場合のみ自動マージされる。
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go/go.mod
+          cache: false   # 外部依存が無く go.sum も無いためキャッシュ不要
+      - run: go vet ./...
+      - run: go test ./...
